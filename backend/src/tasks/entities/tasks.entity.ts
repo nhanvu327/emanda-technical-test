@@ -1,6 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Tree,
+  TreeParent,
+  TreeChildren,
+} from "typeorm";
 
 @Entity()
+@Tree("closure-table")
 export class Task {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -8,9 +16,9 @@ export class Task {
   @Column()
   title!: string;
 
-  @ManyToOne(() => Task, (task) => task.subtasks, { nullable: true })
+  @TreeParent()
   parent?: Task;
 
-  @OneToMany(() => Task, (task) => task.parent)
+  @TreeChildren()
   subtasks!: Task[];
 }

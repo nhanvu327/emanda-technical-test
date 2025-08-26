@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
-import { TaskProvider, useTasks } from './context/TaskContext';
-import { TaskList } from './components/TaskList';
+import React, { useState } from "react";
+import { TaskProvider, useTasks } from "./context/TaskContext";
+import { TaskList } from "./components/TaskList";
+import CreateTask from "./components/CreateTask";
 
 const Main = () => {
-  const [title, setTitle] = useState('');
-  const { addTask } = useTasks();
-
   return (
     <div>
       <h1>Task Manager</h1>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="New Task" />
-      <button onClick={() => { addTask(title); setTitle(''); }}>Add Task</button>
+      <CreateTask />
       <TaskList />
     </div>
   );
